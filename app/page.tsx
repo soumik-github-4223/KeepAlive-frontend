@@ -45,8 +45,13 @@ export default function HomePage() {
       });
       setNewUrl("");
       setNewPassword("");
+      alert(
+        "Remember the password given. If you wish to delete your endpoint, use the same password to delete."
+      );
       // Refresh list
-      const res = await axios.get("https://keepalive-backend.onrender.com/api/urls");
+      const res = await axios.get(
+        "https://keepalive-backend.onrender.com/api/urls"
+      );
       setUrls(res.data);
     } catch (err) {
       alert("Failed to add URL");
@@ -58,9 +63,12 @@ export default function HomePage() {
     if (!entry) return alert("Entry not found!");
     if (!deletePassword) return alert("Please enter password to delete.");
     try {
-      await axios.delete(`https://keepalive-backend.onrender.com/api/urls/delete`, {
-        data: { url: entry.url, password: deletePassword },
-      });
+      await axios.delete(
+        `https://keepalive-backend.onrender.com/api/urls/delete`,
+        {
+          data: { url: entry.url, password: deletePassword },
+        }
+      );
       setUrls((prev) => prev.filter((e) => e._id !== id));
       setShowDeleteInput((prev) => ({ ...prev, [id]: false }));
       setDeletePassword("");
@@ -70,7 +78,6 @@ export default function HomePage() {
     }
   };
 
-  // ...existing code...
   return (
     <main className="min-h-screen bg-white p-8 flex flex-col items-center">
       <div className="w-full max-w-xl">
@@ -79,7 +86,7 @@ export default function HomePage() {
           <h1 className="text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-purple-500 to-pink-500 mb-4 tracking-tight drop-shadow-lg">
             KeepAlive
           </h1>
-            <p className="text-gray-700 text-lg mx-auto px-2 py-3 rounded-xl bg-gradient-to-br from-indigo-50 via-white to-pink-50 shadow-sm border border-gray-100 w-full md:max-w-3xl md:px-8 md:py-6 md:text-xl text-center">
+          <p className="text-gray-700 text-lg mx-auto px-2 py-3 rounded-xl bg-gradient-to-br from-indigo-50 via-white to-pink-50 shadow-sm border border-gray-100 w-full md:max-w-3xl md:px-8 md:py-6 md:text-xl text-center">
             <span className="font-semibold text-indigo-700">KeepAlive</span>{" "}
             helps developers keep their apps awake on platforms like{" "}
             <span className="font-semibold text-purple-600">Render</span> by
@@ -88,7 +95,7 @@ export default function HomePage() {
             <br />
             Just add your app’s URL below and never worry about sleep mode
             again!
-            </p>
+          </p>
         </section>
 
         {/* Add API Form */}
@@ -106,7 +113,7 @@ export default function HomePage() {
             />
             <input
               type="text"
-              placeholder="Password"
+              placeholder="New password"
               className="border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-indigo-400 transition w-full md:w-1/3 placeholder:text-gray-400 bg-gray-50 text-gray-900"
               value={newPassword}
               onChange={(e) => setNewPassword(e.target.value)}
@@ -198,8 +205,67 @@ export default function HomePage() {
             </ul>
           )}
         </section>
+
+        {/* Forgot password note */}
+        <section className="mt-10 text-center">
+          <div className="bg-yellow-50 border border-yellow-200 rounded-xl p-5 text-yellow-900 text-base shadow-sm max-w-xl mx-auto">
+            <strong>Note:</strong> If you forgot your password and want to
+            remove your endpoint from being pinged every 10 minutes, please send
+            an email to{" "}
+            <a
+              href="mailto:soumiksaha8420@gmail.com"
+              className="underline text-indigo-700"
+            >
+              soumiksaha8420@gmail.com
+            </a>{" "}
+            with your URL.
+          </div>
+        </section>
       </div>
+      {/* Developer Information */}
+      <footer className="mt-16 w-full flex justify-center">
+        <div className="bg-gradient-to-r from-indigo-50 via-white to-pink-50 border border-gray-200 rounded-2xl p-6 text-gray-800 text-base shadow-lg max-w-xl w-full mx-auto flex flex-col items-center gap-3">
+          <span className="font-semibold text-lg text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-purple-500 to-pink-500 drop-shadow">
+            Developed by Soumik Saha
+          </span>
+          <div className="flex gap-6 justify-center mt-2">
+            <a
+              href="https://www.linkedin.com/in/soumik-saha-profile/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 text-indigo-600 hover:text-indigo-800 underline font-medium transition"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+                className="inline-block"
+              >
+                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5v-14c0-2.761-2.239-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.268c-.966 0-1.75-.784-1.75-1.75s.784-1.75 1.75-1.75 1.75.784 1.75 1.75-.784 1.75-1.75 1.75zm13.5 11.268h-3v-5.604c0-1.337-.027-3.063-1.867-3.063-1.868 0-2.155 1.459-2.155 2.967v5.7h-3v-10h2.881v1.367h.041c.401-.759 1.379-1.559 2.841-1.559 3.037 0 3.6 2.001 3.6 4.604v5.588z" />
+              </svg>
+              LinkedIn
+            </a>
+            <a
+              href="https://github.com/soumik-github-4223"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 text-gray-700 hover:text-black underline font-medium transition"
+            >
+              <svg
+                width="20"
+                height="20"
+                fill="currentColor"
+                className="inline-block"
+              >
+                <path d="M10 1C4.5 1 0 5.5 0 11c0 4.4 2.9 8.1 6.9 9.4.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.3-3.4-1.3-.4-1-1-1.3-1-1.3-.8-.6.1-.6.1-.6.9.1 1.4.9 1.4.9.8 1.4 2.1 1 2.6.8.1-.6.3-1 .5-1.2-2.2-.3-4.5-1.1-4.5-4.9 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.7 0 0 .8-.3 2.8 1 .8-.2 1.7-.3 2.6-.3s1.8.1 2.6.3c2-.1 2.8-1 2.8-1 .5 1.4.2 2.4.1 2.7.6.7 1 1.6 1 2.7 0 3.8-2.3 4.6-4.5 4.9.3.3.6.8.6 1.7v2.5c0 .3.2.6.7.5C17.1 19.1 20 15.4 20 11c0-5.5-4.5-10-10-10z" />
+              </svg>
+              GitHub
+            </a>
+          </div>
+        </div>
+      </footer>
     </main>
   );
-  // ...existing
 }
