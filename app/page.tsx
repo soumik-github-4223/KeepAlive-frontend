@@ -21,7 +21,7 @@ export default function HomePage() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/urls")
+      .get("https://keepalive-backend.onrender.com/api/urls")
       .then((res) => setUrls(res.data))
       .catch((err) => console.error(err));
   }, []);
@@ -39,14 +39,14 @@ export default function HomePage() {
         "Please enter a valid URL (must start with http:// or https://)."
       );
     try {
-      await axios.post("http://localhost:5000/api/urls", {
+      await axios.post("https://keepalive-backend.onrender.com/api/urls", {
         url: newUrl,
         password: newPassword,
       });
       setNewUrl("");
       setNewPassword("");
       // Refresh list
-      const res = await axios.get("http://localhost:5000/api/urls");
+      const res = await axios.get("https://keepalive-backend.onrender.com/api/urls");
       setUrls(res.data);
     } catch (err) {
       alert("Failed to add URL");
@@ -58,7 +58,7 @@ export default function HomePage() {
     if (!entry) return alert("Entry not found!");
     if (!deletePassword) return alert("Please enter password to delete.");
     try {
-      await axios.delete(`http://localhost:5000/api/urls/delete`, {
+      await axios.delete(`https://keepalive-backend.onrender.com/api/urls/delete`, {
         data: { url: entry.url, password: deletePassword },
       });
       setUrls((prev) => prev.filter((e) => e._id !== id));
