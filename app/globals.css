@@ -12,9 +12,10 @@
   --font-mono: var(--font-geist-mono);
 }
 
+/* Remove dark mode override for background */
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
+    --background: #ffffff; /* Keep background white in dark mode */
     --foreground: #ededed;
   }
 }
