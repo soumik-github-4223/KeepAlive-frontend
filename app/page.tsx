@@ -91,7 +91,7 @@ export default function HomePage() {
             helps developers keep their apps awake on platforms like{" "}
             <span className="font-semibold text-purple-600">Render</span> by
             automatically pinging your endpoints every{" "}
-            <span className="font-semibold text-pink-600">10 minutes</span>.
+            <span className="font-semibold text-pink-600">14 minutes</span>.
             <br />
             Just add your app’s URL below and never worry about sleep mode
             again!
@@ -210,7 +210,7 @@ export default function HomePage() {
         <section className="mt-10 text-center">
           <div className="bg-yellow-50 border border-yellow-200 rounded-xl p-5 text-yellow-900 text-base shadow-sm max-w-xl mx-auto">
             <strong>Note:</strong> If you forgot your password and want to
-            remove your endpoint from being pinged every 10 minutes, please send
+            remove your endpoint from being pinged every 14 minutes, please send
             an email to{" "}
             <a
               href="mailto:soumiksaha8420@gmail.com"
