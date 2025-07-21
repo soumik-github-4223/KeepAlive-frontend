@@ -22,7 +22,7 @@ jobs:
           fi
 
           # Otherwise, ping the Render API
-          curl --silent --show-error --fail https://keepalive-backend.onrender.com/api/urls || echo "Ping failed"
+          curl --silent --show-error --fail https://keepalive-backend-imbv.onrender.com/api/urls || echo "Ping failed"
 
 
 # name: Keep Render API Awake
