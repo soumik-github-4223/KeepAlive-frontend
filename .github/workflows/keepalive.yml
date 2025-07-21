@@ -12,12 +12,8 @@ jobs:
       - name: Check UTC Hour and Ping Render API
         run: |
           hour=$(date -u +"%H")
-          if [ "$hour" -ge 0 ] && [ "$hour" -lt 1 ]; then
-            echo "⏳ Skipping ping (00:00 - 01:00 UTC = 5:30 AM IST to 6:30 AM IST)"
-            exit 0
-          fi
-          if [ "$hour" -ge 18 ] && [ "$hour" -lt 24 ]; then
-            echo "⏳ Skipping ping (18:00 - 24:00 UTC = 11:30 PM IST to 5:30 AM IST)"
+          if [ "$hour" -lt 3 ] || [ "$hour" -ge 15 ]; then
+            echo "⏳ Skipping ping (outside 3:00 - 14:59 UTC = 8:30 AM - 7:59 PM IST)"
             exit 0
           fi
 
